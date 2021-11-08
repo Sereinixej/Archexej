@@ -23,7 +23,7 @@ sed -i 's/^#Para/Para/' /etc/pacman.conf
 pacman -S --noconfirm reflector rsync
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 reflector -a 48 -c $iso -f 5 -l 20 --sort rate --save /etc/pacman.d/mirrorlist
-mkdir /mnt
+# mkdir /mnt
 
 echo "-------------------------------------------------"
 echo "-------select your disk to format----------------"
@@ -61,11 +61,11 @@ sgdisk -c 2:"ROOT" ${DISK}
 echo -e "\nCreating Filesystems...\n$HR"
 if [[ ${DISK} =~ "nvme" ]]; then
 mkfs.vfat -F32 -n "UEFISYS" "${DISK}p1"
-mkfs.ext4 -L "ROOT" "${DISK}p2" -f
+mkfs.ext4 -L "ROOT" "${DISK}p2"
 mount -t ext4 "${DISK}p2" /mnt
 else
 mkfs.vfat -F32 -n "UEFISYS" "${DISK}1"
-mkfs.ext4 -L "ROOT" "${DISK}2" -f
+mkfs.ext4 -L "ROOT" "${DISK}2"
 mount -t ext4 "${DISK}2" /mnt
 fi
 umount /mnt
@@ -79,7 +79,7 @@ reboot now
 esac
 
 # mount target
-mount -t ext4 -o subvol=@ -L ROOT /mnt
+mount -L ROOT /mnt
 mkdir /mnt/boot
 mkdir /mnt/boot/efi
 mount -t vfat -L UEFISYS /mnt/boot/
