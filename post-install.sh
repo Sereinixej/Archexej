@@ -1,17 +1,25 @@
 
+source install.conf
 arch-chroot /mnt
 
 # set timezone
+ln -sf /usr/share/zoneinfo/Europe/Vienna /etc/localtime
+hwclock --systohc
 
 # set locales
+sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+locale-gen
+localectl --no-ask-password set-keymap de
 
 # hostname
+echo $hostname >> /etc/hostname
 
 # initramfs
 mkinitcpio -P
 
-# root pwd
+# root user
 passwd
+sudo su
 
 # install bootloader
 # grub
