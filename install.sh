@@ -8,9 +8,6 @@
 #  A       A   R    R    CCCC   H   H
 #--------------------------------------
 
-## load install config
-source config.sh
-
 # mirrors
 echo "-------------------------------------------------"
 echo "Setting up mirrors for optimal download          "
@@ -92,4 +89,8 @@ if ! grep -qs '/mnt' /proc/mounts; then
     reboot now
 fi
 
-echo "install script finished"
+pacstrap /mnt base base-devel linux-lts linux-firmware linux-lts-headers
+
+genfstab -U /mnt >> /mnt/etc/fstab
+
+echo "base installation finished"

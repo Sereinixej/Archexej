@@ -1,11 +1,24 @@
 
-# configure touchpad
+arch-chroot /mnt
 
-# todo
+# set timezone
+
+# set locales
+
+# hostname
+
+# initramfs
+mkinitcpio -P
+
+# root pwd
+passwd
+
+# install bootloader
+# grub
 
 # install additional pacman packages
 
-pacman -S plasma steam discord virtualbox libreoffice-fresh --noconfirm
+pacman -S networkmanager plasma sddm konsole steam discord virtualbox libreoffice-fresh --noconfirm
 
 # install yay
 
@@ -34,4 +47,11 @@ for PKG in "${PKGS[@]}"; do
     yay -S --noconfirm $PKG
 done
 
-echo "post-install script finished"
+# enable services
+
+systemctl enable sddm
+systemctl enable NetworkManager
+
+
+
+echo "post installation finished"
