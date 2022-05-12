@@ -1,4 +1,4 @@
-pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware
+pacstrap /mnt base base-devel linux linux-headers linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 nano /etc/locale.gen
