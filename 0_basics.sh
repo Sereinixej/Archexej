@@ -4,3 +4,4 @@ ip link
 ping archlinux.org
 timedatectl set-ntp true
 reflector --country France,Germany --sort rate --latest 10
+pacman-key --refresh-keys
