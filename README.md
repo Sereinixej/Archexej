@@ -12,6 +12,8 @@ ip link
 
 ping archlinux.org
 
+reflector --country France,Germany --sort rate --latest 10
+
 timedatectl set-ntp true
 
 lsblk
