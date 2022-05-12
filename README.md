@@ -16,6 +16,8 @@ timedatectl set-ntp true
 
 reflector --country France,Germany --sort rate --latest 10
 
+pacman-key --refresh-keys
+
 lsblk
 
 cfdisk /dev/the_disk_to_be_partitioned
