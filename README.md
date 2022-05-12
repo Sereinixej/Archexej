@@ -93,6 +93,8 @@ reboot now
 
 # POST-INSTALLATION
 
+reflector --country France,Germany --sort rate --latest 10 --save /etc/pacman.d/mirrorlist
+
 sudo pacman -S xorg-server xorg-xinit xorg-server-utils
 
 sudo pacman -S mesa
