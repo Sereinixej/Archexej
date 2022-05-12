@@ -1,3 +1,4 @@
+reflector --country France,Germany --sort rate --latest 10 --save /etc/pacman.d/mirrorlist
 sudo pacman -S xorg-server xorg-xinit xorg-server-utils
 sudo pacman -S mesa
 sudo pacman -S nvidia lib32-nvidia-utils
